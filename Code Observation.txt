@@ -1,0 +1,15 @@
+﻿
+Code Observation
+1. Camel case not properly implemented: Camel case is a convention where each word in a variable or function name starts with a capital letter except for the first word, which starts with a lowercase letter. It's considered a standard coding practice in many programming languages. If the code you encountered did not follow this convention, it would be beneficial to refactor the variable and function names to adhere to the camel case style for consistency and readability.
+
+
+2. Too many functions in a class: Having too many functions in a class can make the code harder to understand and maintain. While there is no fixed maximum number of functions that should be followed universally, it's generally recommended to follow the single responsibility principle and keep classes focused on a specific purpose. If a class has more than 20 functions, it may be a sign that the class is doing too much and should be refactored into smaller, more cohesive classes.
+
+
+3. Excessive use of if-else statements: Having too many nested if-else statements can increase code complexity and make it harder to understand and maintain. While there is no fixed limit on the number of if-else statements allowed, it's generally recommended to keep the number of conditions within reason. If you encounter code with a high number of if-else statements, it could indicate a need for refactoring to improve code readability and maintainability. Consider using other control flow structures, such as switch statements or polymorphism, to reduce the complexity of conditional logic.
+
+
+4. Too many unused variables: It's considered a good practice to remove any unused variables from the code. Unused variables not only clutter the code but also make it harder to understand and can potentially lead to confusion. Removing unused variables helps improve code readability and can prevent potential bugs or misunderstandings.
+
+
+5. Code lines commented out: Commenting out lines of code can be useful during development for debugging or temporary testing purposes. However, it's generally recommended to remove commented-out code before the code is finalized or committed to version control. Commented-out code can make the codebase cluttered and harder to understand. Removing commented-out code helps improve code readability and maintainability.
