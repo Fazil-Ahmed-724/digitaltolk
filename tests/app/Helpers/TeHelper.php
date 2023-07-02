@@ -14,48 +14,53 @@ class TeHelper
     public static function fetchLanguageFromJobId($id)
     {
         $language = Language::findOrFail($id);
-        return $language1 = $language->language;
+        return $language->language;
     }
 
-    public static function getUsermeta($user_id, $key = false)
+    public static function getUsermeta($userId, $key = false)
     {
-        return $user = UserMeta::where('user_id', $user_id)->first()->$key;
-        if (!$key)
+        $user = UserMeta::where('user_id', $userId)->first()->$key;
+        if (!$key){
             return $user->usermeta()->get()->all();
+        }
         else {
             $meta = $user->usermeta()->where('key', '=', $key)->get()->first();
-            if ($meta)
+            if ($meta){
                 return $meta->value;
-            else return '';
+            }
+            else{
+                return '';
+            }
         }
     }
 
-    public static function convertJobIdsInObjs($jobs_ids)
+    public static function convertJobIdsInObjs($jobsIds)
     {
 
         $jobs = array();
-        foreach ($jobs_ids as $job_obj) {
+        foreach ($jobsIds as $job_obj) {
             $jobs[] = Job::findOrFail($job_obj->id);
         }
         return $jobs;
     }
 
-    public static function willExpireAt($due_time, $created_at)
+    public static function willExpireAt($dueTime, $createdAt)
     {
-        $due_time = Carbon::parse($due_time);
-        $created_at = Carbon::parse($created_at);
+        $dueTime = Carbon::parse($dueTime);
+        $createdAt = Carbon::parse($createdAt);
 
-        $difference = $due_time->diffInHours($created_at);
+        $difference = $dueTime->diffInHours($createdAt);
 
 
-        if($difference <= 90)
-            $time = $due_time;
+        if($difference <= 90){
+            $time = $dueTime;
+        }
         elseif ($difference <= 24) {
-            $time = $created_at->addMinutes(90);
+            $time = $createdAt->addMinutes(90);
         } elseif ($difference > 24 && $difference <= 72) {
-            $time = $created_at->addHours(16);
+            $time = $createdAt->addHours(16);
         } else {
-            $time = $due_time->subHours(48);
+            $time = $dueTime->subHours(48);
         }
 
         return $time->format('Y-m-d H:i:s');
